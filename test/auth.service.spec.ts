@@ -2,10 +2,10 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
-import { AuthService } from 'src/auth/auth.service';
-import { UsersService } from 'src/modules/users/users.service';
-import { ActorEnum } from 'src/auth/enum/actor.enum';
-import { Role } from 'src/auth/enum/role.enum';
+import { AuthService } from 'src/features/auth/application/auth.service';
+import { UsersService } from 'src/features/users/application/users.service';
+import { ActorEnum } from 'src/features/auth/domain/enum/actor.enum';
+import { Role } from 'src/features/auth/domain/enum/role.enum';
 import * as bcrypt from 'bcryptjs';
 
 describe('AuthService', () => {
@@ -36,7 +36,7 @@ describe('AuthService', () => {
               userId: 'admin-id',
               email: 'admin@example.com',
               actorType: ActorEnum.ADMIN_WEB_APP,
-              roles: [Role.ADMIN],
+              role: Role.ADMIN,
             }),
           },
         },

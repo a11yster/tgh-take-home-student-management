@@ -5,9 +5,9 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import * as bcrypt from 'bcryptjs';
-import { Role } from 'src/auth/enum/role.enum';
-import { CreateStudentDto } from './dto/create-student.dto';
-import { UserRepository } from './repositories/user.repository';
+import { Role } from 'src/features/auth/domain/enum/role.enum';
+import { CreateStudentDto } from 'src/features/users/dto/create-student.dto';
+import { UserRepository } from 'src/features/users/infrastructure/user.repository';
 
 @Injectable()
 export class UsersService {

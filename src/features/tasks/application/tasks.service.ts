@@ -1,9 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { TaskResponseDto, TaskViewStatus } from './dto/task-response.dto';
-import { AssignTaskDto } from './dto/assign-task.dto';
-import { TaskRepository } from './repositories/task.repository';
-import { TaskDocument, TaskStatus } from './entities/task.entity';
-import { UsersService } from '../users/users.service';
+import { TaskResponseDto, TaskViewStatus } from 'src/features/tasks/dto/task-response.dto';
+import { AssignTaskDto } from 'src/features/tasks/dto/assign-task.dto';
+import { TaskRepository } from 'src/features/tasks/infrastructure/task.repository';
+import { TaskDocument, TaskStatus } from 'src/features/tasks/domain/entities/task.entity';
+import { UsersService } from 'src/features/users/application/users.service';
 
 @Injectable()
 export class TasksService {

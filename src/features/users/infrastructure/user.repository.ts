@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { ActorEnum } from 'src/auth/enum/actor.enum';
-import { Role } from 'src/auth/enum/role.enum';
-import { UserDocument, UserEntity } from '../entities/user.entity';
+import { ActorEnum } from 'src/features/auth/domain/enum/actor.enum';
+import { Role } from 'src/features/auth/domain/enum/role.enum';
+import { UserDocument, UserEntity } from 'src/features/users/domain/entities/user.entity';
 
 @Injectable()
 export class UserRepository {

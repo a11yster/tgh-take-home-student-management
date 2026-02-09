@@ -7,11 +7,11 @@ import {
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import * as bcrypt from 'bcryptjs';
-import { LoginDto } from './dto/login.dto';
-import { UsersService } from 'src/modules/users/users.service';
-import { Role } from './enum/role.enum';
-import { ActorEnum } from './enum/actor.enum';
-import { RefreshTokenDto } from './dto/refresh-token.dto';
+import { LoginDto } from 'src/features/auth/dto/login.dto';
+import { UsersService } from 'src/features/users/application/users.service';
+import { Role } from 'src/features/auth/domain/enum/role.enum';
+import { ActorEnum } from 'src/features/auth/domain/enum/actor.enum';
+import { RefreshTokenDto } from 'src/features/auth/dto/refresh-token.dto';
 import { AppException } from 'src/common/exceptions/app.exception';
 import { ErrorCode } from 'src/common/exceptions/error-code.enum';
 
@@ -19,7 +19,7 @@ export type TokenPayload = {
   userId: string;
   email: string;
   actorType: ActorEnum;
-  roles: Role[];
+  role: Role;
 };
 
 @Injectable()
@@ -32,12 +32,22 @@ export class AuthService {
 
   async loginAdmin(loginDto: LoginDto) {
     const user = await this.validateCredentials(loginDto, [Role.ADMIN]);
-    return this.createAuthPayload(user.id, user.email, user.actorType, user.roles);
+    return this.createAuthPayload(
+      user.id,
+      user.email,
+      user.actorType,
+      user.roles[0],
+    );
   }
 
   async loginStudent(loginDto: LoginDto) {
     const user = await this.validateCredentials(loginDto, [Role.STUDENT]);
-    return this.createAuthPayload(user.id, user.email, user.actorType, user.roles);
+    return this.createAuthPayload(
+      user.id,
+      user.email,
+      user.actorType,
+      user.roles[0],
+    );
   }
 
   async refreshToken(refreshTokenDto: RefreshTokenDto) {
@@ -54,7 +64,7 @@ export class AuthService {
       payload.userId,
       payload.email,
       payload.actorType,
-      payload.roles,
+      payload.role,
     );
   }
 
@@ -93,19 +103,19 @@ export class AuthService {
     userId: string,
     email: string,
     actorType: ActorEnum,
-    roles: Role[],
+    role: Role,
   ) {
     const accessToken = await this.generateAccessToken(
       userId,
       email,
       actorType,
-      roles,
+      role,
     );
     const refreshToken = await this.generateRefreshToken(
       userId,
       email,
       actorType,
-      roles,
+      role,
     );
 
     return {
@@ -118,13 +128,13 @@ export class AuthService {
     userId: string,
     email: string,
     actorType: ActorEnum,
-    roles: Role[],
+    role: Role,
   ) {
     const payload: TokenPayload = {
       userId,
       email,
       actorType,
-      roles,
+      role,
     };
 
     return this.jwtService.signAsync(payload, {
@@ -137,13 +147,13 @@ export class AuthService {
     userId: string,
     email: string,
     actorType: ActorEnum,
-    roles: Role[],
+    role: Role,
   ) {
     const payload: TokenPayload = {
       userId,
       email,
       actorType,
-      roles,
+      role,
     };
 
     return this.jwtService.signAsync(payload, {

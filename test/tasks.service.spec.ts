@@ -1,10 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { NotFoundException } from '@nestjs/common';
-import { TasksService } from 'src/modules/tasks/tasks.service';
-import { TaskRepository } from 'src/modules/tasks/repositories/task.repository';
-import { UsersService } from 'src/modules/users/users.service';
-import { TaskStatus } from 'src/modules/tasks/entities/task.entity';
-import { TaskViewStatus } from 'src/modules/tasks/dto/task-response.dto';
+import { TasksService } from 'src/features/tasks/application/tasks.service';
+import { TaskRepository } from 'src/features/tasks/infrastructure/task.repository';
+import { UsersService } from 'src/features/users/application/users.service';
+import { TaskStatus } from 'src/features/tasks/domain/entities/task.entity';
+import { TaskViewStatus } from 'src/features/tasks/dto/task-response.dto';
 
 describe('TasksService', () => {
   let service: TasksService;

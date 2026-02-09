@@ -1,5 +1,5 @@
-import { ActorEnum } from 'src/auth/enum/actor.enum';
-import { Role } from 'src/auth/enum/role.enum';
+import { ActorEnum } from 'src/features/auth/domain/enum/actor.enum';
+import { Role } from 'src/features/auth/domain/enum/role.enum';
 
 export type AuthUser = {
   userId: string;

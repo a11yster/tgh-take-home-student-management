@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
-import { TaskDocument, TaskEntity, TaskStatus } from '../entities/task.entity';
+import { TaskDocument, TaskEntity, TaskStatus } from 'src/features/tasks/domain/entities/task.entity';
 
 @Injectable()
 export class TaskRepository {

@@ -7,13 +7,13 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { Request } from 'express';
-import { Roles } from 'src/auth/decorator/roles.decorator';
-import { ActorEnum } from 'src/auth/enum/actor.enum';
-import { Role } from 'src/auth/enum/role.enum';
-import { RolesGuard } from 'src/auth/guard/roles.guard';
+import { Roles } from 'src/features/auth/infrastructure/decorators/roles.decorator';
+import { ActorEnum } from 'src/features/auth/domain/enum/actor.enum';
+import { Role } from 'src/features/auth/domain/enum/role.enum';
+import { RolesGuard } from 'src/features/auth/infrastructure/guard/roles.guard';
 import { ApiErrorResponses } from 'src/common/decorators/api-error-responses.decorator';
 import { ResponseMessage } from 'src/common/decorators/response-message.decorator';
-import { TasksService } from '../tasks/tasks.service';
+import { TasksService } from 'src/features/tasks/application/tasks.service';
 
 @ApiTags('student')
 @ApiBearerAuth()

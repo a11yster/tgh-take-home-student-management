@@ -1,8 +1,8 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { AuthService } from './auth.service';
-import { LoginDto } from './dto/login.dto';
-import { RefreshTokenDto } from './dto/refresh-token.dto';
+import { AuthService } from 'src/features/auth/application/auth.service';
+import { LoginDto } from 'src/features/auth/dto/login.dto';
+import { RefreshTokenDto } from 'src/features/auth/dto/refresh-token.dto';
 import { ResponseMessage } from 'src/common/decorators/response-message.decorator';
 import { ApiErrorResponses } from 'src/common/decorators/api-error-responses.decorator';
 

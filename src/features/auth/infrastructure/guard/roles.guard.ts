@@ -6,11 +6,11 @@ import {
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Request } from 'express';
-import { Roles } from '../decorator/roles.decorator';
-import { AuthService } from '../auth.service';
-import { RoleBody } from '../types/role-body.type';
-import { ActorEnum } from '../enum/actor.enum';
-import { Role } from '../enum/role.enum';
+import { Roles } from 'src/features/auth/infrastructure/decorators/roles.decorator';
+import { AuthService } from 'src/features/auth/application/auth.service';
+import { RoleBody } from 'src/features/auth/domain/types/role-body.type';
+import { ActorEnum } from 'src/features/auth/domain/enum/actor.enum';
+import { Role } from 'src/features/auth/domain/enum/role.enum';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
@@ -52,12 +52,13 @@ export class RolesGuard implements CanActivate {
 
     try {
       const payload = await this.authService.verifyAccessToken(authorization);
-      const roles = Array.isArray(payload.roles) ? payload.roles : [];
+      const roles = payload.role ? [payload.role] : [];
 
       request.user = {
         userId: payload.userId,
         email: payload.email,
         actorType: payload.actorType,
+        role: roles[0],
         roles,
       };
 
