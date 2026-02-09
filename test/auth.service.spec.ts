@@ -73,7 +73,7 @@ describe('AuthService', () => {
       name: 'Admin',
       email: 'admin@example.com',
       passwordHash,
-      roles: [Role.ADMIN],
+      role: Role.ADMIN,
       actorType: ActorEnum.ADMIN_WEB_APP,
     } as any);
 
@@ -104,7 +104,7 @@ describe('AuthService', () => {
       name: 'Student',
       email: 'student@example.com',
       passwordHash,
-      roles: [Role.STUDENT],
+      role: Role.STUDENT,
       actorType: ActorEnum.WEB_APP,
     } as any);
 

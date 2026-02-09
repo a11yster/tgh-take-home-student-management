@@ -43,7 +43,7 @@ export class UsersService {
       throw new NotFoundException('Student not found');
     }
 
-    if (!user.roles.includes(Role.STUDENT)) {
+    if (user.role !== Role.STUDENT) {
       throw new NotFoundException('User is not a student');
     }
 
@@ -55,7 +55,7 @@ export class UsersService {
       name: process.env.DEFAULT_ADMIN_NAME || 'System Admin',
       email: process.env.DEFAULT_ADMIN_EMAIL,
       password: process.env.DEFAULT_ADMIN_PASSWORD,
-      roles: [Role.ADMIN],
+      role: Role.ADMIN,
     });
   }
 
@@ -63,7 +63,7 @@ export class UsersService {
     name: string;
     email?: string;
     password?: string;
-    roles: Role[];
+    role: Role;
   }): Promise<void> {
     if (!input.email || !input.password) {
       return;
@@ -80,7 +80,7 @@ export class UsersService {
         name: input.name,
         email: input.email,
         passwordHash,
-        roles: input.roles,
+        role: input.role,
       });
     } catch {
       throw new InternalServerErrorException('Failed to seed default admin user');

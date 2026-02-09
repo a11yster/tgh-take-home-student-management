@@ -19,8 +19,8 @@ export class UserEntity {
   @Prop({ required: true })
   passwordHash: string;
 
-  @Prop({ type: [String], enum: Object.values(Role), required: true })
-  roles: Role[];
+  @Prop({ type: String, enum: Object.values(Role), required: true })
+  role: Role;
 
   @Prop({ type: String, enum: Object.values(ActorEnum), required: true })
   actorType: ActorEnum;

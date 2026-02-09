@@ -31,7 +31,7 @@ export class UserRepository {
       email: input.email.toLowerCase(),
       department: input.department || null,
       passwordHash: input.passwordHash,
-      roles: [Role.STUDENT],
+      role: Role.STUDENT,
       actorType: ActorEnum.WEB_APP,
     });
   }
@@ -40,16 +40,16 @@ export class UserRepository {
     name: string;
     email: string;
     passwordHash: string;
-    roles?: Role[];
+    role?: Role;
   }): Promise<UserDocument> {
-    const roles = input.roles?.length ? input.roles : [Role.ADMIN];
+    const role = input.role || Role.ADMIN;
 
     return this.userModel.create({
       name: input.name,
       email: input.email.toLowerCase(),
       department: null,
       passwordHash: input.passwordHash,
-      roles,
+      role,
       actorType: ActorEnum.ADMIN_WEB_APP,
     });
   }

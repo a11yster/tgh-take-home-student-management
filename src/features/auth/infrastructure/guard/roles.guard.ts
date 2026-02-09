@@ -21,7 +21,7 @@ export class RolesGuard implements CanActivate {
 
   private static matchRoles(
     apiRoles: RoleBody[],
-    loggedInUserRoles: Role[],
+    loggedInUserRole: Role,
     loggedInActorType: ActorEnum,
   ): boolean {
     if (!apiRoles?.length) return false;
@@ -29,7 +29,7 @@ export class RolesGuard implements CanActivate {
     return apiRoles.some(
       (allowedRole) =>
         allowedRole.actorType === loggedInActorType &&
-        loggedInUserRoles.includes(allowedRole.role),
+        loggedInUserRole === allowedRole.role,
     );
   }
 
@@ -52,17 +52,15 @@ export class RolesGuard implements CanActivate {
 
     try {
       const payload = await this.authService.verifyAccessToken(authorization);
-      const roles = payload.role ? [payload.role] : [];
 
       request.user = {
         userId: payload.userId,
         email: payload.email,
         actorType: payload.actorType,
-        role: roles[0],
-        roles,
+        role: payload.role,
       };
 
-      return RolesGuard.matchRoles(apiRoles, roles, payload.actorType);
+      return RolesGuard.matchRoles(apiRoles, payload.role, payload.actorType);
     } catch {
       throw new UnauthorizedException('Invalid or expired token');
     }

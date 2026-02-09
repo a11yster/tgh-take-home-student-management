@@ -36,7 +36,7 @@ export class AuthService {
       user.id,
       user.email,
       user.actorType,
-      user.roles[0],
+      user.role,
     );
   }
 
@@ -46,7 +46,7 @@ export class AuthService {
       user.id,
       user.email,
       user.actorType,
-      user.roles[0],
+      user.role,
     );
   }
 
@@ -86,7 +86,7 @@ export class AuthService {
       throw new NotFoundException('User not found');
     }
 
-    const hasValidRole = acceptedRoles.some((role) => user.roles.includes(role));
+    const hasValidRole = acceptedRoles.includes(user.role);
     if (!hasValidRole) {
       throw new UnauthorizedException('Invalid role for this login endpoint');
     }

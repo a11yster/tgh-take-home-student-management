@@ -5,5 +5,5 @@ export type AuthUser = {
   userId: string;
   email: string;
   actorType: ActorEnum;
-  roles: Role[];
+  role: Role;
 };
