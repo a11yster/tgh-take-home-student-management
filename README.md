@@ -5,7 +5,6 @@ A standalone NestJS API with clean architecture style modules, JWT access/refres
 ## API URL
 
 - Base URL (local): `http://localhost:8080`
-- Swagger docs: `http://localhost:8080/api`
 - Scalar docs: `http://localhost:8080/api-reference`
 
 ## Core Standards Implemented
@@ -34,12 +33,26 @@ A standalone NestJS API with clean architecture style modules, JWT access/refres
 | `DEFAULT_ADMIN_EMAIL` | `admin@example.com` | Seeded admin email |
 | `DEFAULT_ADMIN_PASSWORD` | `ChangeMe123!` | Seeded admin password |
 
-## Setup
+## Local Setup
 
 ```bash
 npm install
 cp .env.example .env
 npm run start:dev
+```
+
+## Docker Setup (Docker Compose)
+
+```bash
+cp .env.example .env
+docker compose up --build -d
+```
+
+Useful commands:
+
+```bash
+docker compose logs -f api
+docker compose down
 ```
 
 ## Admin Seeding
