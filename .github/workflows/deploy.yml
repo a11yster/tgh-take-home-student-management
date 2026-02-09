@@ -53,6 +53,7 @@ jobs:
             --platform managed \
             --allow-unauthenticated \
             --service-account "${RUNTIME_SA}" \
+            --remove-env-vars "JWT_EXPIRY,REFRESH_JWT_EXPIRY,DEFAULT_ADMIN_NAME,DEFAULT_ADMIN_EMAIL,DEFAULT_ADMIN_PASSWORD" \
             --set-secrets "TOKEN_SECRET=TOKEN_SECRET:latest,REFRESH_TOKEN_SECRET=REFRESH_TOKEN_SECRET:latest,MONGODB_URI=MONGODB_URI:latest,JWT_EXPIRY=JWT_EXPIRY:latest,REFRESH_JWT_EXPIRY=REFRESH_JWT_EXPIRY:latest,DEFAULT_ADMIN_NAME=DEFAULT_ADMIN_NAME:latest,DEFAULT_ADMIN_EMAIL=DEFAULT_ADMIN_EMAIL:latest,DEFAULT_ADMIN_PASSWORD=DEFAULT_ADMIN_PASSWORD:latest"
 
       - name: Show service URL
