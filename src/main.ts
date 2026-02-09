@@ -43,6 +43,9 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document, {
+    jsonDocumentUrl: 'api/json',
+  });
 
   app.use(
     '/api-reference',
@@ -59,6 +62,9 @@ async function bootstrap() {
 
   const port = Number(process.env.PORT || 8080);
   await app.listen(port);
+  logger.log(`Server listening on port ${port}`);
+  logger.log(`Scalar docs available at /api-reference`);
+  logger.log(`Swagger docs available at /api`);
 
   let isShuttingDown = false;
   const shutdownSignals: NodeJS.Signals[] = ['SIGINT', 'SIGTERM'];
