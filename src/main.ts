@@ -1,4 +1,4 @@
-import { HttpStatus, ValidationPipe } from '@nestjs/common';
+import { HttpStatus, Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory, Reflector } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { apiReference } from '@scalar/nestjs-api-reference';
@@ -10,8 +10,10 @@ import { ErrorCode } from './common/exceptions/error-code.enum';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const logger = new Logger('Bootstrap');
 
   app.enableCors();
+  app.enableShutdownHooks();
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -57,6 +59,32 @@ async function bootstrap() {
 
   const port = Number(process.env.PORT || 8080);
   await app.listen(port);
+
+  let isShuttingDown = false;
+  const shutdownSignals: NodeJS.Signals[] = ['SIGINT', 'SIGTERM'];
+
+  const gracefulShutdown = async (signal: NodeJS.Signals) => {
+    if (isShuttingDown) {
+      return;
+    }
+    isShuttingDown = true;
+    logger.warn(`Received ${signal}, starting graceful shutdown`);
+
+    try {
+      await app.close();
+      logger.log('Graceful shutdown completed');
+      process.exit(0);
+    } catch (error) {
+      logger.error('Graceful shutdown failed', error as Error);
+      process.exit(1);
+    }
+  };
+
+  shutdownSignals.forEach((signal) => {
+    process.once(signal, () => {
+      void gracefulShutdown(signal);
+    });
+  });
 }
 
 bootstrap();
