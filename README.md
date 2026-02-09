@@ -7,18 +7,6 @@ A standalone NestJS API with clean architecture style modules, JWT access/refres
 - Base URL (local): `http://localhost:8080`
 - Scalar docs: `http://localhost:8080/api-reference`
 
-## Core Standards Implemented
-
-- No session/cookie auth
-- Access + Refresh token authentication
-- RBAC using `Roles` + `RolesGuard`
-- Every API response follows:
-  - `status`
-  - `message`
-  - `data`
-- Centralized error handling with consistent error JSON
-- JSON-only request and response payloads
-
 ## Environment Variables
 
 | Variable | Purpose |
