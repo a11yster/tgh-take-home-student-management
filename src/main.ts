@@ -45,7 +45,7 @@ async function bootstrap() {
   app.use(
     '/api-reference',
     apiReference({
-      theme: 'mars',
+      theme: 'deepSpace',
       spec: {
         content: document,
       },
