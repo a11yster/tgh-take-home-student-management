@@ -2,16 +2,19 @@
 
 A standalone NestJS API with clean architecture style modules, JWT access/refresh tokens, RBAC, and Scalar API documentation.
 
-## API URL
+## Local URL
 
-- Base URL (local): `http://localhost:8080`
-- Scalar docs (local): `http://localhost:8080/api-reference`
-- Swagger docs (local): `http://localhost:8080/api`
-- OpenAPI JSON (local): `http://localhost:8080/api/json`
-- Base URL (live): `https://student-management-api-635306411131.asia-south1.run.app`
-- Scalar docs (live): `https://student-management-api-635306411131.asia-south1.run.app/api-reference`
-- Swagger docs (live): `https://student-management-api-635306411131.asia-south1.run.app/api`
-- OpenAPI JSON (live): `https://student-management-api-635306411131.asia-south1.run.app/api/json`
+- Base URL: `http://localhost:8080`
+- Scalar docs: `http://localhost:8080/api-reference`
+- Swagger docs: `http://localhost:8080/api`
+- OpenAPI JSON: `http://localhost:8080/api/json`
+
+## Live URL
+
+- Base URL: `https://student-management-api-635306411131.asia-south1.run.app`
+- Swagger docs: `https://student-management-api-635306411131.asia-south1.run.app/api`
+- Scalar docs: `https://student-management-api-635306411131.asia-south1.run.app/api-reference`
+- OpenAPI JSON: `https://student-management-api-635306411131.asia-south1.run.app/api/json`
 
 ## Environment Variables
 
