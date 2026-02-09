@@ -13,6 +13,7 @@ env:
   AR_REPO: student-management
   WIF_PROVIDER: projects/635306411131/locations/global/workloadIdentityPools/github-pool/providers/github-provider
   DEPLOYER_SA: github-deployer@project-c96f8b49-0a91-4caf-b13.iam.gserviceaccount.com
+  RUNTIME_SA: student-management-runtime@project-c96f8b49-0a91-4caf-b13.iam.gserviceaccount.com
 
 jobs:
   deploy:
@@ -51,8 +52,8 @@ jobs:
             --region "${REGION}" \
             --platform managed \
             --allow-unauthenticated \
-            --set-env-vars "JWT_EXPIRY=1d,REFRESH_JWT_EXPIRY=365d,DEFAULT_ADMIN_NAME=System Admin,DEFAULT_ADMIN_EMAIL=admin@example.com,DEFAULT_ADMIN_PASSWORD=ChangeMe123!" \
-            --set-secrets "TOKEN_SECRET=TOKEN_SECRET:latest,REFRESH_TOKEN_SECRET=REFRESH_TOKEN_SECRET:latest,MONGODB_URI=MONGODB_URI:latest"
+            --service-account "${RUNTIME_SA}" \
+            --set-secrets "TOKEN_SECRET=TOKEN_SECRET:latest,REFRESH_TOKEN_SECRET=REFRESH_TOKEN_SECRET:latest,MONGODB_URI=MONGODB_URI:latest,JWT_EXPIRY=JWT_EXPIRY:latest,REFRESH_JWT_EXPIRY=REFRESH_JWT_EXPIRY:latest,DEFAULT_ADMIN_NAME=DEFAULT_ADMIN_NAME:latest,DEFAULT_ADMIN_EMAIL=DEFAULT_ADMIN_EMAIL:latest,DEFAULT_ADMIN_PASSWORD=DEFAULT_ADMIN_PASSWORD:latest"
 
       - name: Show service URL
         run: |
