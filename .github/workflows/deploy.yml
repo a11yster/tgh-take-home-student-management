@@ -51,7 +51,7 @@ jobs:
             --region "${REGION}" \
             --platform managed \
             --allow-unauthenticated \
-            --set-env-vars "PORT=8080,JWT_EXPIRY=1d,REFRESH_JWT_EXPIRY=365d,DEFAULT_ADMIN_NAME=System Admin,DEFAULT_ADMIN_EMAIL=admin@example.com,DEFAULT_ADMIN_PASSWORD=ChangeMe123!" \
+            --set-env-vars "JWT_EXPIRY=1d,REFRESH_JWT_EXPIRY=365d,DEFAULT_ADMIN_NAME=System Admin,DEFAULT_ADMIN_EMAIL=admin@example.com,DEFAULT_ADMIN_PASSWORD=ChangeMe123!" \
             --set-secrets "TOKEN_SECRET=TOKEN_SECRET:latest,REFRESH_TOKEN_SECRET=REFRESH_TOKEN_SECRET:latest,MONGODB_URI=MONGODB_URI:latest"
 
       - name: Show service URL
