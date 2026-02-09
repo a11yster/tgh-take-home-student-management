@@ -21,17 +21,17 @@ A standalone NestJS API with clean architecture style modules, JWT access/refres
 
 ## Environment Variables
 
-| Variable | Example | Purpose |
-|---|---|---|
-| `PORT` | `8080` | App port |
-| `MONGODB_URI` | `mongodb+srv://...` | MongoDB Atlas connection string |
-| `TOKEN_SECRET` | `TxXfXQ1sDSZrIhNCrcCy0i60yxUI6yPqoyUs2AUsJX1egpZucoOq4HcQ6YU3G88Z9lS8wA3r` | Access token signing secret |
-| `REFRESH_TOKEN_SECRET` | `R5Mqw5GzBBoKgM0QAYZD_Kp3WDBrDGi2HZTM5vRhQz7wNye5rKv5BrbiSoyWGu_kKfoZJfQq` | Refresh token signing secret |
-| `JWT_EXPIRY` | `1d` | Access token expiry |
-| `REFRESH_JWT_EXPIRY` | `365d` | Refresh token expiry |
-| `DEFAULT_ADMIN_NAME` | `System Admin` | Seeded admin name |
-| `DEFAULT_ADMIN_EMAIL` | `admin@example.com` | Seeded admin email |
-| `DEFAULT_ADMIN_PASSWORD` | `ChangeMe123!` | Seeded admin password |
+| Variable | Purpose |
+|---|---|
+| `PORT` | App port |
+| `MONGODB_URI` | MongoDB Atlas connection string |
+| `TOKEN_SECRET` | Access token signing secret |
+| `REFRESH_TOKEN_SECRET` | Refresh token signing secret |
+| `JWT_EXPIRY` | Access token expiry |
+| `REFRESH_JWT_EXPIRY` | Refresh token expiry |
+| `DEFAULT_ADMIN_NAME` | Seeded admin name |
+| `DEFAULT_ADMIN_EMAIL` | Seeded admin email |
+| `DEFAULT_ADMIN_PASSWORD` | Seeded admin password |
 
 ## Local Setup
 
