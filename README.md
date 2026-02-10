@@ -16,6 +16,12 @@ A standalone NestJS API with clean architecture style modules, JWT access/refres
 - Scalar docs: `https://student-management-api-635306411131.asia-south1.run.app/api-reference`
 - OpenAPI JSON: `https://student-management-api-635306411131.asia-south1.run.app/api/json`
 
+## Demo Credentials (Live)
+
+- Admin email: `admin@example.com`
+- Admin password: `ChangeMe123!`
+- Student credentials: create a student via `POST /admin/students`, then use that student's email and password with `POST /auth/student/login`.
+
 ## Environment Variables
 
 | Variable | Purpose |
@@ -86,3 +92,11 @@ On app startup:
   }
 }
 ```
+
+## Constraint Notes
+
+- Task `dueAt` accepts any valid ISO date-time; if the due date is already in the past, the task is created successfully and appears as `OVERDUE` when fetched.
+- Only `ADMIN` users can create students and assign tasks; only `STUDENT` users can view and complete their own tasks.
+- `PATCH /student/tasks/:taskId/complete` is idempotent for completed tasks (calling it again keeps status as `COMPLETED`).
+- A task can be assigned only to an existing student ID; invalid/non-student IDs are rejected.
+- List endpoints currently return full datasets (`GET /admin/students`, `GET /student/tasks`); pagination is recommended for production scale.
