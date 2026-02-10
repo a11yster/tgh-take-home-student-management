@@ -1,5 +1,5 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AuthService } from 'src/features/auth/application/auth.service';
 import { LoginDto } from 'src/features/auth/dto/login.dto';
 import { RefreshTokenDto } from 'src/features/auth/dto/refresh-token.dto';
@@ -15,6 +15,15 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @ResponseMessage('admin login success')
   @ApiOperation({ summary: 'Admin login with email ID and password' })
+  @ApiBody({
+    type: LoginDto,
+    schema: {
+      example: {
+        email: 'admin@example.com',
+        password: 'ChangeMe123!',
+      },
+    },
+  })
   @ApiResponse({
     status: 200,
     schema: {
@@ -40,6 +49,15 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @ResponseMessage('student login success')
   @ApiOperation({ summary: 'Student login with email ID and password' })
+  @ApiBody({
+    type: LoginDto,
+    schema: {
+      example: {
+        email: 'rahul@example.com',
+        password: 'Student@123',
+      },
+    },
+  })
   @ApiResponse({
     status: 200,
     schema: {
