@@ -70,6 +70,10 @@ On app startup:
 - `GET /student/tasks`
 - `PATCH /student/tasks/:taskId/complete`
 
+## Pagination Note
+
+- Current implementation returns full lists for `GET /admin/students` and `GET /student/tasks` since this is a demo task for tgh
+
 ## Auth Response Example
 
 ```json
