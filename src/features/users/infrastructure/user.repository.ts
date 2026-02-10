@@ -20,6 +20,13 @@ export class UserRepository {
     return this.userModel.findById(id).exec();
   }
 
+  async listStudents(): Promise<UserDocument[]> {
+    return this.userModel
+      .find({ role: Role.STUDENT })
+      .sort({ createdAt: -1 })
+      .exec();
+  }
+
   async createStudent(input: {
     name: string;
     email: string;

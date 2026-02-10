@@ -33,6 +33,16 @@ export class UsersService {
     };
   }
 
+  async listStudents() {
+    const students = await this.userRepository.listStudents();
+    return students.map((student) => ({
+      id: student.id,
+      name: student.name,
+      email: student.email,
+      department: student.department,
+    }));
+  }
+
   async findByEmail(email: string) {
     return this.userRepository.findByEmail(email);
   }

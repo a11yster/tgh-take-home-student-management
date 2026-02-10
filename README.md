@@ -65,6 +65,7 @@ On app startup:
 - `POST /auth/student/login`
 - `POST /auth/refreshToken`
 - `POST /admin/students`
+- `GET /admin/students`
 - `POST /admin/tasks/assign`
 - `GET /student/tasks`
 - `PATCH /student/tasks/:taskId/complete`

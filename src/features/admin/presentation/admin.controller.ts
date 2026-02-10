@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import {
   ApiBearerAuth,
   ApiOperation,
@@ -53,6 +53,39 @@ export class AdminController {
   @Roles([{ actorType: ActorEnum.ADMIN_WEB_APP, role: Role.ADMIN }])
   async createStudent(@Body() createStudentDto: CreateStudentDto) {
     return this.usersService.createStudent(createStudentDto);
+  }
+
+  @Get('students')
+  @ResponseMessage('students fetched successfully')
+  @ApiOperation({
+    summary: 'List all students with IDs (admin only)',
+    description: 'Use this endpoint to get student IDs before assigning tasks.',
+  })
+  @ApiResponse({
+    status: 200,
+    schema: {
+      example: {
+        status: true,
+        message: 'students fetched successfully',
+        data: [
+          {
+            id: '67a8db20c23626bf17798f6a',
+            name: 'Rahul Menon',
+            email: 'rahul@example.com',
+            department: 'Computer Science',
+          },
+        ],
+      },
+    },
+  })
+  @ApiErrorResponses({
+    badRequest: false,
+    unauthorized: true,
+    forbidden: true,
+  })
+  @Roles([{ actorType: ActorEnum.ADMIN_WEB_APP, role: Role.ADMIN }])
+  async listStudents() {
+    return this.usersService.listStudents();
   }
 
   @Post('tasks/assign')
